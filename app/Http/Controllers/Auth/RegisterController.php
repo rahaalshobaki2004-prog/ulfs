@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest');//مستخدم عادي
     }
 
     /**
@@ -49,8 +49,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255'],//بس نص , ما بقدر اتركه فاضي اكتر اشي 255
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],//unique مشان ما يتكرر الايميل في الداتا بيس
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -62,7 +62,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return User::create([//خزن البيانات بالداتا
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

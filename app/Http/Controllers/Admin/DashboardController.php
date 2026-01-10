@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'admin']);
+        $this->middleware(['auth', 'admin']);//فنكشن انه يدخل الادمن
     }
 
     public function index()
@@ -28,7 +28,9 @@ class DashboardController extends Controller
         $recentPosts  = Post::with('user')->where('status', 'approved')->latest()->take(10)->get();
         $users        = User::where('role', 'student')->latest()->take(20)->get();
 
-        return view('admin.dashboard', compact('stats', 'pendingPosts', 'recentPosts', 'users'));
+        return view('admin.dashboard', compact('stats', 'pendingPosts', 'recentPosts', 'users'));//يعرض صفحة الادمن
+
+
     }
 
     public function destroyUser(User $user)

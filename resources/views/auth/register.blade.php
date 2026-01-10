@@ -1,11 +1,8 @@
-
-
-
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><!---->
+<html lang="ar" dir="rtl"> <!--لغة الصفحة عربي رهاواتجاهها من اليمين لليسار-->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><!--دعم الحروف العربية -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--استجابة الصفحة بتطلع مش مخربطة ع التلفون -->
     <title>register  • ULFS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -16,7 +13,7 @@
 <body class="min-h-screen gradient-bg flex items-center justify-center p-4">
 
     <div class="w-full max-w-md">
-        <!-- Logo -->
+        <!-- Logo شكل الصفحة من فوق العنوان  واختصاره  -->
         <div class="text-center mb-10">
             <h1 class="text-5xl font-bold text-[#006d77]">ULFS</h1>
             <p class="text-gray-600 mt-2">University-Lost-and-Found-System</p>
@@ -26,10 +23,14 @@
         <div class="bg-white rounded-2xl shadow-xl p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">  New Account</h2>
 
-            <form action="{{ route('register') }}" method="POST">
-                @csrf
+            <form action="{{ route('register') }}" method="POST"><!--اهم اشي بودي البيانات ع RegisterControllerال-->
+       <!--استخدمت بوست مش جت لانه اكثر امان وانه الجت يظهر البيانات في URL-->
+
+                @csrf  <!--Cross-Site Request Forgery عدم وجوده لارافل بترفض الطلب برسل فورم من موقع خارجي-->
                 <div class="mb-6">
-                    <label class="block text-gray-700 font-medium mb-2"> full name</label>
+                    <label class="block text-gray-700 font-medium mb-2"> full name</label><!--اسم االعمود في الداتا بيس Required بتتحقق من جهة المستخدم Frontend → required
+
+Backend → Laravel validation-->
                     <input type="text" name="name" required
                            class="@error('name') is-invalid @enderror w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-[#006d77]/20 focus:border-[#006d77]"
                            >
@@ -44,7 +45,7 @@
                     <label class="block text-gray-700 font-medium mb-2"> e-mail</label>
                     <input type="email" name="email" required value="{{ old('email') }}"
                            class="@error('email') is-invalid @enderror w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-[#006d77]/20 focus:border-[#006d77]"
-                          >
+                          > <!--يعرض رسالة الخطأ الي جاي من السيرفر-->
                           @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -55,7 +56,7 @@
 
 
                 <div class="mb-6">
-                    <label class="block text-gray-700 font-medium mb-2">password</label>
+                    <label class="block text-gray-700 font-medium mb-2">password</label><!--كلمة السر -->
                     <input type="password" name="password" required
                            class="@error('password') is-invalid @enderror w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-[#006d77]/20 focus:border-[#006d77]"
                            >
@@ -67,7 +68,7 @@
                 </div>
 
                 <div class="mb-6">
-                    <label class="block text-gray-700 font-medium mb-2"> confirm password</label>
+                    <label class="block text-gray-700 font-medium mb-2"> confirm password</label><!--بتقارن مع كلمة السر لازم تكون نفس الاشي -->
                     <input type="password" name="password_confirmation" required
                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-[#006d77]/20 focus:border-[#006d77]"
                           >
@@ -75,7 +76,10 @@
 
                 <button type="submit"
                         class="w-full primary font-bold py-4 rounded-lg shadow-lg hover:shadow-xl transition text-lg">
-                   Register
+                   Register<!--  شو بصير عند الضغط ؟إرسال الفورم الي عبيته فوق الاسم وكلمة السر والايميل
+                           Laravel يتحقق من البيانات
+                                  تشفير كلمة المرور
+                              تخزين المستخدم في DB-->
                 </button>
             </form>
 

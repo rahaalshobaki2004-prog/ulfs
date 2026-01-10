@@ -14,7 +14,7 @@ class PostController extends Controller
     }
 
     // الصفحة الرئيسية + فلاتر
-    public function index(Request $request)
+   public function index(Request $request)
     {
         $type = $request->query('type'); // ?type=lost أو found أو all
 
@@ -23,7 +23,7 @@ class PostController extends Controller
                 return $q->where('type', $type);
             })
             ->with('user')
-            ->latest()
+            ->latest()//الاحدث احدث بوست
             ->paginate(12);
 
         return view('home', compact('posts'));
@@ -32,7 +32,7 @@ class PostController extends Controller
     // صفحة إنشاء بوست
     public function create()
     {
-        return view('create-post');
+        return view('create-post');//زر
     }
 
     // حفظ البوست
@@ -50,8 +50,8 @@ class PostController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data['status']  = 'pending';
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('posts', 'public');
+        if ($request->hasFile('image')) {//بنزل مسار الصورة واسمها بالداتا
+            $data['image'] = $request->file('image')->store('posts', 'public');//بتحزن
         }
 
         Post::create($data);

@@ -1,11 +1,11 @@
 <?php
-
+//ربط الجداول
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
-{
+{//ربط بين البوست والمسج
     protected $fillable = [
         'post_id', 'sender_name', 'sender_contact', 'message', 'reply_to_id'
     ];

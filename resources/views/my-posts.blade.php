@@ -7,9 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"/>
     <style>
-        :root { --primary: #006d77; --primary-hover: #005f6a; --danger: #770006;}
+        :root { --primary: #006d77; --primary-hover: #005f6a; --danger: #770006;--edit: #cabe1a;}
         .bg-primary { background-color: var(--primary); }
         .bg-danger { background-color: var(--danger); }
+        .bg-edit { background-color: var(--edit); }
         .hover\:bg-primary-hover:hover { background-color: var(--primary-hover); }
         .text-primary { color: var(--primary); }
         .gradient-bg { background: linear-gradient(135deg, #e8f4f8 0%, #f0f9fb 100%); }
@@ -70,7 +71,12 @@
                                 <a href="{{ route('posts.show', $post) }}" class="block mt-4 text-center bg-primary text-white py-2 rounded-lg hover:bg-primary-hover transition">
                                     {{ $post->messages_count }} New Message{{ $post->messages_count != 1 ? 's' : '' }}
                                 </a>
+
                             @endif
+                             <a href="{{ route('my-posts.edit', $post) }}"
+                                    class="block mt-4 text-center bg-edit text-white py-2 rounded-lg transition">
+                                        Edit
+                                </a>
                             <a href="{{ route('myposts.destroy', $post) }}" class="block mt-4 text-center bg-danger text-white py-2 rounded-lg transition">
                                      Delete Post
                             </a>

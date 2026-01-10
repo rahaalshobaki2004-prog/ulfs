@@ -9,7 +9,7 @@ class UserMessageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth');//ما بشتغل الا اذا كنت  مسجلة دخول
     }
 
     public function index()
@@ -18,7 +18,7 @@ class UserMessageController extends Controller
             ->messages()
             ->with('post') // جيب عنوان الإعلان
             ->latest()
-            ->paginate(15);
+            ->paginate(15); //يعرض بالصفحة 15 رسالو
 
         return view('my-messages', compact('messages'));
     }
